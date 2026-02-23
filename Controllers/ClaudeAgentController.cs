@@ -37,12 +37,14 @@ public class ClaudeAgentController : ControllerBase
     {
         // Configure options for the agent identity
         string agentIdentity = _configuration["AgentIdentity:ID"] ?? throw new InvalidOperationException("AgentId configuration is missing.");
+
+        // Initialize options for agent identity
         var options = new AuthorizationHeaderProviderOptions()
             .WithAgentIdentity(agentIdentity);
 
-        // Acquire an access token for the agent identity
-        var authHeader = await _headerProvider.CreateAuthorizationHeaderForAppAsync(
-            "https://graph.microsoft.com/.default", options);
+        // Acquire an access token for the signed-in user with the specified scopes
+        var authHeader = await _headerProvider.CreateAuthorizationHeaderForUserAsync(
+            new[] { "User.Read" }, options);
 
         return authHeader;
     }
