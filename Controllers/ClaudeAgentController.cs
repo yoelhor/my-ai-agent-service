@@ -39,7 +39,11 @@ public class ClaudeAgentController : ControllerBase
         await using McpClient mcpClient = await McpClient.CreateAsync(new HttpClientTransport(new()
         {
             Name = "MCPServer",
-            Endpoint = new Uri(mcpEndpoint)
+            Endpoint = new Uri(mcpEndpoint),
+            AdditionalHeaders = new Dictionary<string, string>
+            {
+                {"Authorization", await GetAuthorizationHeaderAsync().ConfigureAwait(false) }
+            }
         }));
 
 
