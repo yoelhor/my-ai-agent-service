@@ -1,0 +1,39 @@
+﻿@page
+@model my_ai_agent_service.Pages.IndexModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h1 class="h5 mb-0">Ask me anything</h1>
+                <span class="badge text-bg-light" id="chatbot-status">Online</span>
+            </div>
+
+            <div class="card-body p-0">
+                <div id="chatbot-messages" class="list-group list-group-flush" style="height: 420px; overflow-y: auto;">
+                    <div class="list-group-item border-0">
+                        <div class="small text-muted mb-1">Bot</div>
+                        <div class="bg-light rounded p-2 d-inline-block">Hi! How can I help you today?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer bg-white">
+                <div id="chatbot-form" class="row g-2">
+                    <div class="col-12 col-md-10">
+                        <label for="chatbot-input" class="visually-hidden">Message</label>
+                        <input type="text" class="form-control" id="chatbot-input" placeholder="Type your message..." />
+                    </div>
+                    <div class="col-12 col-md-2 d-grid">
+                        <button class="btn btn-primary" id="chatbot-send" onclick="submitPrompt()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -16,6 +16,9 @@ builder.Services.AddInMemoryTokenCaches();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
+// Add the Razor Pages services to the container.
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 app.UseAuthentication();
@@ -29,5 +32,9 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 app.UseHttpsRedirection();
+
+app.MapStaticAssets();
+app.MapRazorPages()
+   .WithStaticAssets();
 
 app.Run();
